@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import config from '../../config.mjs';
+
+
+import Base from "../../layouts/Base.astro";
+import Post from "../../components/blog/Post.astro";
+
+export async function getStaticPaths({paginate}) {
+    const blogEntries = (await getCollection('blog', ({ data }) => {
+        return true;
+    })).sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+    );
+
+    return paginate(blogEntries, { pageSize: config.postsPerPage });
+}
+
+const { page } = Astro.props;
+---
+<Base>
+    <section class="container mx-auto max-w-screen-lg px-7 py-10">
+        {
+            page.data.map((post, index) => {
+                return <Post postData={post} num={index} />;
+            })
+        }
+        <div class="flex flex-row justify-center gap-7">
+            {page.url.prev ? <a href={page.url.prev} class="text-[16px] bg-transparent border-pacamara-secondary border-[1px] leading-none rounded-full py-3 px-5 text-pacamara-secondary hover:bg-pacamara-accent hover:border-pacamara-accent hover:text-pacamara-white transition-all duration-300">Previous</a> : null}
+            {page.url.next ? <a href={page.url.next} class="text-[16px] bg-transparent border-pacamara-secondary border-[1px] leading-none rounded-full py-3 px-5 text-pacamara-secondary hover:bg-pacamara-accent hover:border-pacamara-accent hover:text-pacamara-white transition-all duration-300">Next</a> : null}
+        </div>
+        
+    </section>
+
+    
+</Base>

@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import Post from "./Post.astro";
+import config from "../../config.mjs";
+
+const { postLimit = config.latestPosts, skipPost = "" } = Astro.props;
+
+const posts = (await getCollection('blog', ({ data }) => {
+    return !(data.title == skipPost) ;
+  })).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  ).slice(0, postLimit);
+---
+<section class="container mx-auto max-w-screen-lg px-7 py-10 mb-10">
+    {
+        posts.map((post, index) => {
+          return <Post postData={post} num={index} />;
+        })
+    }
+</section>

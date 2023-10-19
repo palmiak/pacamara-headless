@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets'
+
+import logoImage from '../../assets/logo.jpg';
+
+import slide1 from '../../assets/slide-1.jpg';
+import slide2 from '../../assets/slide-2.jpg';
+import slide3 from '../../assets/slide-3.jpg';
+import slide4 from '../../assets/slide-4.jpg';
+import slide5 from '../../assets/slide-5.jpg';
+---
+<section class="
+        container mx-auto max-w-screen-xl px-7 py-10
+        lg:min-h-[500px] content-center font-pacamara
+        prose lg:prose-xl
+        prose-headings:font-pacamara-space prose-headings:mt-5 prose-headings:text-pacamara-dark prose-headings:font-bold lg:prose-h1:text-7xl prose-h1:mt-0 prose-heading:transition-all prose-heading:duration-300  
+        prose-p:text-pacamara-primary/50 dark:prose-p:text-white/70 prose-p:mb-0 prose-p:transition-all prose-p:duration-300
+        prose-img:mt-0 prose-img:mb-0  
+        dark:prose-headings:text-white
+    ">
+    <Image src={logoImage} width={200} alt="" loading="eager" decoding="sync" class="relative w-[150px] lg:w-[220px] rounded-[15px] image-shine"  />
+    <p>
+        Aromatic brew, pure indulgence, exquisite satisfaction.
+    </p>
+    <h1><span class="gradient-underline"><span>Awaken your senses to the tantalizing allure of specialty coffee bliss.</span></span></h1>
+</section>
+
+<section class="my-10 flex justify-center gap-5 overflow-hidden py-4 sm:gap-10">
+    <div class="relative w-44 flex-none overflow-hidden bg-white dark:bg-pacamara-dark sm:w-3/12 rotate-2 rounded-[15px]">
+        <Image src={slide1} width={800} alt="" class="object-cover image-shine h-[200px] md:h-[500px]" />
+    </div>
+    <div class="relative w-44 flex-none overflow-hidden bg-white dark:bg-pacamara-dark sm:w-3/12 -rotate-2 rounded-[15px]">
+        <Image src={slide2} width={800} alt="" class="object-cover image-shine h-[200px] md:h-[500px]" />
+    </div>
+    <div class="relative w-44 flex-none overflow-hidden bg-white dark:bg-pacamara-dark sm:w-3/12 rotate-2 rounded-[15px]">
+        <Image src={slide3} width={800} alt="" class="object-cover image-shine h-[200px] md:h-[500px]" />
+    </div>
+    <div class="relative w-44 flex-none overflow-hidden bg-white dark:bg-pacamara-dark sm:w-3/12  rotate-2 rounded-[15px]">
+        <Image src={slide4} width={800} alt="" class="object-cover image-shine h-[200px] md:h-[500px]" />
+    </div>
+    <div class="relative w-44 flex-none overflow-hidden bg-white dark:bg-pacamara-dark sm:w-3/12 -rotate-2 rounded-[15px]">
+        <Image src={slide5} width={800} alt="" class="object-cover image-shine h-[200px] md:h-[500px]" />
+    </div>
+</section>
