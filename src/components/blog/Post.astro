@@ -23,23 +23,21 @@ const isOdd = num % 2;
     <div class="grid grid-cols-1 lg:grid-cols-[200px_auto] md:grid-cols-[200px_auto] gap-10 items-center">
         <div class="post_image">
             <a href={ '/blog/' + postData.slug }>
-                <Image src={postData?.data?.image ? postData.data.image : defaultImage} width="750" alt={ postData.title + "Thumbnail"} class:list={[ 'rounded-[15px] image-shine object-cover h-[200px]', { "rotate-2": isOdd, "-rotate-2": !isOdd } ]}  />
+                <Image src={postData?.image ? postData.image : defaultImage} width="750" height="750" alt={ postData.title + "Thumbnail"} class:list={[ 'rounded-[15px] image-shine object-cover h-[200px]', { "rotate-2": isOdd, "-rotate-2": !isOdd } ]}  />
             </a>
         </div>
         <div class="post_intro">
             <h2>
                 <a href={ '/blog/' + postData.slug } class="text-pacamara-dark hover:text-pacamara-accent">
-                    { postData.data.title }
+                    { postData.title }
                 </a>
             </h2>
         
-            <p>
-                { postData.data.intro }
-            </p>
+            <p set:html={postData.intro} />
         
             <p class="flex flex-row flex-wrap gap-5 items-center mt-5 group-last:mb-0">
-                <Tag tag={postData.data.tag} />
-                <PublishDate date={postData.data.pubDate} />
+                <Tag tag={postData.tag} />
+                <PublishDate date={postData.pubDate} />
             </p>
         </div>
     </div>

@@ -1,17 +1,12 @@
 ---
-import { getCollection } from "astro:content";
+import { getPosts } from "../../cms/cmsBase";
 import config from '../../config.mjs';
-
 
 import Base from "../../layouts/Base.astro";
 import Post from "../../components/blog/Post.astro";
 
 export async function getStaticPaths({paginate}) {
-    const blogEntries = (await getCollection('blog', ({ data }) => {
-        return true;
-    })).sort(
-        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-    );
+    const blogEntries = await getPosts( { 'collection': "Blog", 'postLimit': 100 });
 
     return paginate(blogEntries, { pageSize: config.postsPerPage });
 }

@@ -1,9 +1,12 @@
 ---
 import { Image } from 'astro:assets'
-const { authorData } = Astro.props;
+import { getAuthor } from '../../cms/cmsBase';
+const { authorId } = Astro.props;
+
+const authorData = await getAuthor( { 'authorId': authorId, 'collection': 'users'  } );
 ---
 <section class="mx-auto max-w-screen-lg px-7 lg:px-0 py-10 mb-5 flex flex-col lg:flex-row flex-nowrap gap-10 items-center">
-    {authorData.data.photo && <Image src={authorData.data.photo} width="200" class="relative w-[150px] lg:w-[220px] rounded-full" alt="Author's photo" /> }
+    {authorData.photo && <Image src={authorData.photo} width="200" height="200" class="relative w-[150px] lg:w-[220px] rounded-full" alt="Author's photo" /> }
 
     <div class="
             prose lg:prose-xl max-w-none 
@@ -14,8 +17,8 @@ const { authorData } = Astro.props;
             prose-headings:font-pacamara-space prose-h2:mb-7
             dark:prose-a:text-white dark:prose-a:hover:text-pacamara-accent dark:prose-p:text-white/70
         ">
-        <h3>{authorData.data.displayName}</h3>
-        <p>{authorData.data.bio}</p>
+        <h3>{authorData.displayName}</h3>
+        <p>{authorData.bio}</p>
     </div>
 </section>
 <div class="w-full h-[3px] overflow-hidden gradient-line"></div>
