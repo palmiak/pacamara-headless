@@ -20,7 +20,7 @@ export async function getPosts( args ) {
     }
 
     const rawPosts = await getDirectusClient( 
-        args.collection, 
+        "Blog", 
         params
     )
     
